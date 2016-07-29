@@ -1,0 +1,58 @@
+---
+# base docker-compose configuration
+version: '2'
+networks:
+  default:
+    driver: bridge
+volumes:
+  "nginx-confd":
+    external:
+      name: infra_nginx-confd
+  "nginx-certs":
+    external:
+      name: infra_nginx-certs
+  "jenkins-home":
+    external:
+      name: infra_jenkins-home
+
+services:
+  # DOCKER CLEANER >>>
+  "docker-cleaner":
+    image: meltwater/docker-cleanup
+    hostname: docker-cleaner
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
+    environment:
+      KEEP_CONTAINERS_NAMED: infra*
+    restart: unless-stopped
+
+  # <<<
+
+  # NGINX >>>
+  nginx:
+    image: nginx
+    hostname: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "nginx-confd:/etc/nginx/conf.d/"
+      - "nginx-certs:/etc/nginx/certs:ro"
+    restart: unless-stopped
+
+
+
+  # <<<
+
+  jenkins:
+    privileged: true
+    build:
+      context: .
+    ports:
+      - "0.0.0.0:8080:8080"
+    volumes:
+      - "jenkins-home:/var/jenkins_home/"
+    restart: unless-stopped
+
+# vim:foldmethod=marker foldmarker=>>>,<<<
+
