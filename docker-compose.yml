@@ -9,6 +9,7 @@ volumes:
     external:
       name: infra_jenkins-home
 
+services:
   jenkins:
     privileged: true
     build:
@@ -18,6 +19,3 @@ volumes:
     volumes:
       - "jenkins-home:/var/jenkins_home/"
     restart: unless-stopped
-
-# vim:foldmethod=marker foldmarker=>>>,<<<
-

@@ -4,7 +4,7 @@ USER root
 
 
 RUN apt-get update && apt-get install -y python-pip libffi-dev libssl-dev python-dev rsync
-RUN pip install --upgrade cffi setuptools
+RUN pip install --upgrade cffi setuptools flake8
 
 RUN pip install --upgrade ansible
 
