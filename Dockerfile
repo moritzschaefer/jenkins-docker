@@ -10,3 +10,4 @@ RUN pip install --upgrade ansible
 
 
 COPY id_rsa /root/id_rsa
+COPY ansible.cfg /etc/ansible/ansible.cfg
