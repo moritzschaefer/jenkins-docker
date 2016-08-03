@@ -3,7 +3,7 @@ FROM jenkins
 USER root
 
 
-RUN apt-get update && apt-get install -y python-pip libffi-dev libssl-dev python-dev rsync python-virtualenv
+RUN apt-get update && apt-get install -y python-pip libffi-dev libssl-dev python-dev rsync python-virtualenv openvpn
 RUN pip install --upgrade cffi setuptools flake8
 
 RUN pip install --upgrade ansible
