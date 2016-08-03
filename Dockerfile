@@ -10,4 +10,6 @@ RUN pip install --upgrade ansible
 
 
 COPY id_rsa /root/id_rsa
+COPY client.ovpn /root/client.ovpn
+COPY auth.txt /root/auth.txt
 COPY ansible.cfg /etc/ansible/ansible.cfg

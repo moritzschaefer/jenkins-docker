@@ -23,6 +23,9 @@ Simply run
 
 and Jenkins will run in a container and publish port 8001 (adjustable in docker-compose.yml)
 
-## private key
+## private key and VPN
 
-You need to add a private key "id_rsa" file to this directory which can be used to deploy with ansible later
+You need to add a private key "id_rsa" file to this directory which can be used to deploy, using ansible, later
+
+To support VPN in deployment, add a "client.ovpn" file along with a key file auth.txt, as described here: https://my.hostvpn.com/knowledgebase/22/Save-Password-in-OpenVPN-for-Automatic-Login.html.
+Make sure your ovpn file uses the auth.txt if necessary
